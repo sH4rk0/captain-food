@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs",
+    "strict": true,
+    "noImplicitAny": true,
+    "esModuleInterop": true,
+    "allowUnreachableCode": true,
+    "sourceMap": true,
+    "strictPropertyInitialization": false,
+    "typeRoots": ["node_modules/@types", "typings"],
+    "lib": ["dom", "es2015.promise", "es5"],
+    /*"baseUrl": ".", 
+    "paths": {
+      "phaser3-ui-plugins": ["node_modules/phaser3-rex-plugins/templates/ui/ui-plugin"]
+    }*/
+  }
+}
