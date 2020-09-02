@@ -11,7 +11,7 @@ export let GameData: any = {
         sequence:[
 
       {d:2000,t:0,s:true,f:47},
-      {d:2000,t:0},
+     {d:2000,t:0},
       {d:2000,t:0},
       {d:2000,t:0},
       {d:2000,t:0},

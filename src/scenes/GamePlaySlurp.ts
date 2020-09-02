@@ -432,7 +432,7 @@ this._levelText = this.add
   }
 
   item2itemCollide(_item1: any, _item2: any) {
-    console.log(_item1.getObjName(),_item2.getObjName())
+    //console.log(_item1.getObjName(),_item2.getObjName())
     if ((_item1.getObjName()=="bomb" && _item2.getObjName()=="boss") ||( _item1.getObjName()=="boss" && _item2.getObjName()=="bomb")){
     
       let __bomb:Bomb;

@@ -19,6 +19,7 @@ export default class Boss extends Phaser.GameObjects.Container {
   private _darkParticle:Phaser.GameObjects.Particles.ParticleEmitter;
   private _scene:GamePlaySlurp;
   private _tweenY:Phaser.Tweens.Tween;
+  private _startTween:Phaser.Tweens.Tween;
   private _directionTimer:Phaser.Time.TimerEvent;
   private _bombTimer:Phaser.Time.TimerEvent;
   private _type:number;
@@ -64,8 +65,6 @@ this._scene.events.on("gameover", this.gameOver, this);
 
 this._scene.events.off("player-dead", this.stopActivities, this);
 this._scene.events.on("player-dead", this.stopActivities, this);
-
-
 
 this._leftParticle = this._config.scene.add.particles('explosionParticles').setDepth(200);
 
@@ -210,20 +209,14 @@ this._rightParticle.createEmitter({
   getObjName():string{ return "boss"}
 
   stopActivities(){
-    this._bombTimer.remove();
-    this._directionTimer.remove();
+    if(this._bombTimer!=undefined) this._bombTimer.remove();
+   if(this._directionTimer!=undefined) this._directionTimer.remove();
   }
 
   activate() {
 
- /* this._heli=this._config.scene.sound.add("heli");
-   this._heli.play(undefined, {
-      loop: true,
-      volume: .15,
-    })
-    */
     
-    this._config.scene.add.tween({
+    this._startTween=this._config.scene.add.tween({
       targets:this,
       alpha:1,
       y:850,
@@ -258,6 +251,7 @@ this._rightParticle.createEmitter({
 
  changeDirection(){
 
+  if (this.isDie()) return;
   if(Phaser.Math.RND.integerInRange(0,1)){
  //@ts-ignore
  this.body.setAccelerationX(-20+((this._type+1)*3));
@@ -272,10 +266,9 @@ this.body.setAccelerationX(20+((this._type+1)*3));
 
 
   spawnFood(){
-
+    if (this.isDie()) return;
     //console.log(this._scene.getBombNumber(),this._maxBomb)
     if(this._scene.getBombNumber()==this._maxBomb) return;
-
 
     this._scene.sound.playAudioSprite("sfx","cannon",{volume:0.3});
 
@@ -285,7 +278,6 @@ this.body.setAccelerationX(20+((this._type+1)*3));
     this._rightParticle.emitParticleAt(this.x+49, this.y-108);
     }
     
-
     this._face.setFrame(this._type*2+1)
     this._scene.addToFoodGroup( new Bomb({
       scene: this._scene,
@@ -303,44 +295,41 @@ this.body.setAccelerationX(20+((this._type+1)*3));
   }
 
   engineDown() {
-
-    this._bombTimer.remove();
-    this._directionTimer.remove();
-   // this._heli.stop();
-
+ 
+    if(this._startTween!=undefined) this._startTween.pause().remove();
+    if(this._tweenY!=undefined) this._tweenY.pause().remove();
+    this.stopActivities();
+  
     this._scene.sound.playAudioSprite("sfx","falling",{
       loop: false,
       volume: .5,
     });
    
-
-this._tweenY.pause().remove();
-
-    this._isDie = true;
+   
     //@ts-ignore
     this.body.setCollideWorldBounds(false);
- //@ts-ignore
-    //console.log(JSON.stringify(this.body.acceleration))
+
    
 //@ts-ignore
     if(this.body.acceleration.x==-400){
        //@ts-ignore
-      this.body.setAcceleration(-100, 400);
+      this.body.setAccelerationX(-100);
       this._scene.add.tween({targets:this,angle:-45,duration:5000})
     }else{
   //@ts-ignore
-  this.body.setAcceleration(100, 400);
-  this._scene.add.tween({targets:this,angle:45,duration:5000})
+      this.body.setAccelerationX(100);
+      this._scene.add.tween({targets:this,angle:45,duration:5000})
     }
   
     //@ts-ignore
-    this.body.setVelocity(0, 0);
+    this.body.setAccelerationY(400).setVelocity(0,0)
+
 
 
   }
 
   hit() {
-    
+    if(this.isDie()) return;
    if(this._isMale){
     this._scene.sound.playAudioSprite("sfx",Phaser.Math.RND.pick(["ouch1","ouch2","ouch3"]),{volume:0.3});
    }else{
@@ -361,7 +350,7 @@ this._tweenY.pause().remove();
 if( this._damage==1){ this._fireParticle.active=true;}
 else if(this._damage==2){ this._darkParticle.active=true;}
 else if( this._damage==3){this._whiteParticle.active=true;}
-    if (this._damage == this._maxHit) this.engineDown();
+    if (this._damage == this._maxHit) { this._isDie = true;this.engineDown();}
   }
 
   isDie(): boolean {
@@ -370,13 +359,11 @@ else if( this._damage==3){this._whiteParticle.active=true;}
 
   
 
-  handleAI() {
-
   
-  }
 
   update(time: number, delta: number) {
-    if (!this._isDie) this.handleAI();
+
+
     if (this.y > 1200) {
       
      this._scene.events.emit("boss-dead");
