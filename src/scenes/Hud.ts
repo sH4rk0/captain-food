@@ -12,6 +12,7 @@ export default class Hud extends Phaser.Scene {
   private _foods:Array<string>;
   private _foodName:Phaser.GameObjects.Text;
   private _isDisplayingFood:boolean=false;
+  private _finalScore:number;
 
  
 
@@ -24,6 +25,7 @@ export default class Hud extends Phaser.Scene {
   preload() {}
 
   create() {
+    this._finalScore=0;
     this._isDisplayingFood=false;
     this._foods=[];
 
@@ -121,10 +123,19 @@ export default class Hud extends Phaser.Scene {
   private updateScore(parameters: Array<any>): void {
     //console.log(parameters[0])
     this.setScore(parameters[0])
-    
+    //console.log(parameters[0])
+   if(parameters[0]>0) {
+     
+     this._finalScore+=parameters[0];
+     this.registry.set("finalscore", this._finalScore);
+     //console.log(this._finalScore, this._score)
+     
+  }
     if(parameters[1]!="")this._foods.push(parameters[1]);
     this.displayFood();
     this.registry.set("score", this._score);
+    
+
   }
 
   private displayFood(): void {

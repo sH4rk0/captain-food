@@ -18,7 +18,9 @@ export default class GameOver extends Phaser.Scene {
   private _text1: Phaser.GameObjects.Text;
   private _text2: Phaser.GameObjects.Text;
   private _text3: Phaser.GameObjects.Text;
-
+  private _score:number=0;
+  private _finalscore:number=0;
+  private _level:number=0;
   constructor() {
     super({
       key: "GameOver",
@@ -27,6 +29,10 @@ export default class GameOver extends Phaser.Scene {
 
   create() {
    // console.log("create gameover");
+
+  this._score=this.registry.get("score");
+  this._finalscore=this.registry.get("finalscore");
+  this._level= this.registry.get("level");
 
     this._container2 = this.add.container(300, 330).setAlpha(0);
     this._container2.setSize(300, 302);
@@ -161,7 +167,7 @@ export default class GameOver extends Phaser.Scene {
       .bitmapText(50, 900, "arcade", "SCORE   YOURNAME")
       .setTint(0xff8200);
     this.add
-      .bitmapText(50, 940, "arcade", this.registry.get("score"))
+      .bitmapText(50, 940, "arcade", this._finalscore+"")
       .setTint(0xffffff);
 
     this._playerText = this.add
@@ -196,14 +202,15 @@ export default class GameOver extends Phaser.Scene {
     this.scene.stop("ScoreInput");
 
     leaderboard.insertScore({
-      score: this.registry.get("score"),
+      score: this._finalscore,
       name: name,
-      level: this.registry.get("level"),
+      level: this._level,
       date: Date.now()
     });
     
     this.registry.set("score", 0);
     this.registry.set("level", 0);
+    this.registry.set("finalscore", 0);
 
     this._music.stop();
     this.scene.stop("GameOver");

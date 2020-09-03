@@ -41,6 +41,7 @@ window.addEventListener("load", () => {
 
   const game = new Phaser.Game(config);
 
+  
   /*
   if ("serviceWorker" in navigator) {
     navigator.serviceWorker

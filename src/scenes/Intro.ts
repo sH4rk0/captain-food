@@ -39,12 +39,12 @@ export default class Intro extends Phaser.Scene {
   }
 
   preload() {
-    this.load.scenePlugin(
+   /* this.load.scenePlugin(
       "rexgesturesplugin",
       "assets/js/rexgestures.js",
       "rexGestures",
       "rexGestures"
-    );
+    );*/
   }
 
   create() {
@@ -161,7 +161,7 @@ export default class Intro extends Phaser.Scene {
 
                   this.fixNames(this._highscores[i].name) + 
                   " " +
-                  this._highscores[i].score
+                  this._highscores[i].score + " LVL" +  this._highscores[i].level
               )
               .setTint(this._highscoresColors[i])
               .setOrigin(0)
@@ -237,9 +237,10 @@ export default class Intro extends Phaser.Scene {
     this.introIn();
 
     //@ts-ignore
-    this._swipeInput = this.rexGestures.add
+   /* this._swipeInput = this.rexGestures.add
       .swipe({ velocityThreshold: 1000, dir: 1 })
       .on("swipe", (swipe: any) => {}, this);
+      */
 
     this._player = new Player({ scene: this, x: 490, y: 150 });
     this._player.setAlpha(0);
