@@ -35,9 +35,28 @@ export default class GamePlaySlurp extends Phaser.Scene {
 
   create() {
 
+    this.input.keyboard.on("keydown-O", (event: Event) => {
+      this.game.renderer.snapshot((image: any) => {
+        let mimeType = "image/png";
+        var imgURL = image.src;
+        var dlLink = document.createElement("a");
+        dlLink.download = "snapshot";
+        dlLink.href = imgURL;
+        dlLink.dataset.downloadurl = [
+          mimeType,
+          dlLink.download,
+          dlLink.href
+        ].join(":");
+        document.body.appendChild(dlLink);
+        dlLink.click();
+        document.body.removeChild(dlLink);
+      });
+    });
+
     this._sfx=this.sound.addAudioSprite("sfx");
 
     this.registry.set("score", 0);
+    this.registry.set("finalscore", 0);
     this.registry.set("level", 0);
 
     this._currentSequence=0;

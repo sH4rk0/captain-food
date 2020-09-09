@@ -79,6 +79,7 @@ export default class Preloader extends Phaser.Scene {
 
     this.input.once("pointerdown", () => {
       this.scene.start("Intro");
+      this.registry.set("bestlevel",0);
 /*
       this.scene.start("GameOver");
       this.scene.start("ScoreInput");

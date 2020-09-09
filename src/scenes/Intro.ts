@@ -32,6 +32,14 @@ export default class Intro extends Phaser.Scene {
     0x0c69bf,
     0xff8200,
   ];
+
+  private _bossFaces:Array<Phaser.GameObjects.Sprite>=[];
+  private _bossCaps:Array<Phaser.GameObjects.Sprite>=[];
+  private _bossDecorations:Array<Phaser.GameObjects.Sprite>=[];
+  private _bossTexts:Array<Phaser.GameObjects.Text>=[];
+  private _bossContainer:Phaser.GameObjects.Container;
+  private _bestLevel:number=0;
+
   constructor() {
     super({
       key: "Intro",
@@ -48,8 +56,33 @@ export default class Intro extends Phaser.Scene {
   }
 
   create() {
+
+    this._bossFaces=[];
+    this._bossCaps=[];
+    this._bossDecorations=[];
+    this._bossTexts=[];
+
+    this._bestLevel=this.registry.get("bestlevel");
    
     this.cameras.main.setBackgroundColor('#6fd1ec');
+
+    this.input.keyboard.on("keydown-O", (event: Event) => {
+      this.game.renderer.snapshot((image: any) => {
+        let mimeType = "image/png";
+        var imgURL = image.src;
+        var dlLink = document.createElement("a");
+        dlLink.download = "snapshot";
+        dlLink.href = imgURL;
+        dlLink.dataset.downloadurl = [
+          mimeType,
+          dlLink.download,
+          dlLink.href
+        ].join(":");
+        document.body.appendChild(dlLink);
+        dlLink.click();
+        document.body.removeChild(dlLink);
+      });
+    });
    
     let _config = {
       font: "20px",
@@ -190,7 +223,7 @@ export default class Intro extends Phaser.Scene {
       stroke: "#ffffff",
       strokeThickness: 8,
       wordWrap: true,
-      wordWrapWidth: 1000,
+      wordWrapWidth: 1000
     };
     this._play = this.add
       .text(300, 600, "GIOCA", _config)
@@ -302,6 +335,137 @@ export default class Intro extends Phaser.Scene {
       yoyo: true,
     });
 
+
+    this._bossContainer = this.add.container(0, 0).setAlpha(0);
+
+    //zingarelli
+    const _sprite1face:Phaser.GameObjects.Sprite=this.add.sprite(90,450,"faces").setFrame(0).setScale(2).setTintFill(0x000000);
+    this._bossFaces.push(_sprite1face);
+    const _sprite1cap:Phaser.GameObjects.Sprite=this.add.sprite(90+10,450-45,"cap-generic").setScale(.5).setFrame(0).setTintFill(0x000000);
+    this._bossCaps.push(_sprite1cap);
+    const _sprite1decoration:Phaser.GameObjects.Sprite=this.add.sprite(90+10,450-45,"food").setFrame(61).setScale(1).setTintFill(0x000000);
+    this._bossDecorations.push(_sprite1decoration);
+    const _sprite1text:Phaser.GameObjects.Text=this.add.text(10+80,450+50,"???",{}).setFontFamily('"Press Start 2P"').setOrigin(.5);
+    this._bossTexts.push(_sprite1text);
+
+ //dimiao
+    const _sprite2face:Phaser.GameObjects.Sprite=this.add.sprite(300,450,"faces").setFrame(2).setScale(2).setTintFill(0x000000);
+    this._bossFaces.push(_sprite2face);
+    const _sprite2cap:Phaser.GameObjects.Sprite=this.add.sprite(300+10,450-45,"cap-generic").setScale(.5).setFrame(0).setTintFill(0x000000);
+    this._bossCaps.push(_sprite2cap);
+    const _sprite2decoration:Phaser.GameObjects.Sprite=this.add.sprite(300+10,450-45,"food").setFrame(3).setScale(1).setTintFill(0x000000);
+    this._bossDecorations.push(_sprite2decoration);
+    const _sprite2text:Phaser.GameObjects.Text=this.add.text(220+80,450+50,"???",{}).setFontFamily('"Press Start 2P"').setOrigin(.5);
+    this._bossTexts.push(_sprite2text);
+
+    //astrolina
+    const _sprite3face:Phaser.GameObjects.Sprite=this.add.sprite(500,450,"faces").setFrame(4).setScale(2).setTintFill(0x000000);
+    this._bossFaces.push(_sprite3face);
+    const _sprite3cap:Phaser.GameObjects.Sprite=this.add.sprite(500+8,450-45,"cap-generic").setScale(.5).setFrame(0).setTintFill(0x000000);
+    this._bossCaps.push(_sprite3cap);
+    const _sprite3decoration:Phaser.GameObjects.Sprite=this.add.sprite(500+10,450-45,"food").setFrame(67).setScale(1).setTintFill(0x000000);
+    this._bossDecorations.push(_sprite3decoration);
+    const _sprite3text:Phaser.GameObjects.Text=this.add.text(420+80,450+50,"???",{}).setFontFamily('"Press Start 2P"').setOrigin(.5);
+    this._bossTexts.push(_sprite3text)
+    ;
+
+    //frignero
+    const _sprite4face:Phaser.GameObjects.Sprite=this.add.sprite(90,650,"faces").setFrame(6).setScale(2).setTintFill(0x000000);
+    this._bossFaces.push(_sprite4face);
+    const _sprite4cap:Phaser.GameObjects.Sprite=this.add.sprite(90+6,650-45,"cap-generic").setScale(.5).setFrame(0).setTintFill(0x000000);
+    this._bossCaps.push(_sprite4cap);
+    const _sprite4decoration:Phaser.GameObjects.Sprite=this.add.sprite(90,650-45,"food").setFrame(69).setScale(1).setTintFill(0x000000);
+    this._bossDecorations.push(_sprite4decoration);
+    const _sprite4text:Phaser.GameObjects.Text=this.add.text(10+80,650+50,"???",{}).setFontFamily('"Press Start 2P"').setOrigin(.5);
+    this._bossTexts.push(_sprite4text);
+
+     //bossanova
+     const _sprite5face:Phaser.GameObjects.Sprite=this.add.sprite(300,650,"faces").setFrame(8).setScale(2).setTintFill(0x000000);
+     this._bossFaces.push(_sprite5face);
+     const _sprite5cap:Phaser.GameObjects.Sprite=this.add.sprite(300+8,650-45,"cap-generic").setScale(.5).setFrame(0).setTintFill(0x000000);
+     this._bossCaps.push(_sprite5cap);
+     const _sprite5decoration:Phaser.GameObjects.Sprite=this.add.sprite(300+5,650-45,"food").setFrame(48).setScale(1).setTintFill(0x000000);
+     this._bossDecorations.push(_sprite5decoration);
+     const _sprite5text:Phaser.GameObjects.Text=this.add.text(220+80,650+50,"???",{}).setFontFamily('"Press Start 2P"').setOrigin(.5);
+     this._bossTexts.push(_sprite5text);
+
+     
+    //renzie
+    const _sprite6face:Phaser.GameObjects.Sprite=this.add.sprite(500,650,"faces").setFrame(10).setScale(2).setTintFill(0x000000);
+    this._bossFaces.push(_sprite6face);
+    const _sprite6cap:Phaser.GameObjects.Sprite=this.add.sprite(500+8,650-45,"cap-generic").setScale(.5).setFrame(0).setTintFill(0x000000);
+    this._bossCaps.push(_sprite6cap);
+    const _sprite6decoration:Phaser.GameObjects.Sprite=this.add.sprite(500+5,650-45,"food").setFrame(28).setScale(1).setTintFill(0x000000);
+    this._bossDecorations.push(_sprite6decoration);
+    const _sprite6text:Phaser.GameObjects.Text=this.add.text(420+80,650+50,"???",{}).setFontFamily('"Press Start 2P"').setOrigin(.5);
+    this._bossTexts.push(_sprite6text)
+    ;
+
+    
+    //loshi
+    const _sprite7face:Phaser.GameObjects.Sprite=this.add.sprite(90,850,"faces").setFrame(12).setScale(2).setTintFill(0x000000);
+    this._bossFaces.push(_sprite7face);
+    const _sprite7cap:Phaser.GameObjects.Sprite=this.add.sprite(90+6,850-45,"cap-generic").setScale(.5).setFrame(0).setTintFill(0x000000);
+    this._bossCaps.push(_sprite7cap);
+    const _sprite7decoration:Phaser.GameObjects.Sprite=this.add.sprite(90,850-45,"food").setFrame(23).setScale(1).setTintFill(0x000000);
+    this._bossDecorations.push(_sprite7decoration);
+    const _sprite7text:Phaser.GameObjects.Text=this.add.text(10+80,850+50,"???",{}).setFontFamily('"Press Start 2P"').setOrigin(.5);
+    this._bossTexts.push(_sprite7text);
+
+     //giuseppi
+     const _sprite8face:Phaser.GameObjects.Sprite=this.add.sprite(300,850,"faces").setFrame(14).setScale(2).setTintFill(0x000000);
+     this._bossFaces.push(_sprite8face);
+     const _sprite8cap:Phaser.GameObjects.Sprite=this.add.sprite(300+8,850-45,"cap-generic").setScale(.5).setFrame(0).setTintFill(0x000000);
+     this._bossCaps.push(_sprite8cap);
+     const _sprite8decoration:Phaser.GameObjects.Sprite=this.add.sprite(300+3,850-45,"food").setFrame(72).setScale(1).setTintFill(0x000000);
+     this._bossDecorations.push(_sprite8decoration);
+     const _sprite8text:Phaser.GameObjects.Text=this.add.text(220+80,850+50,"???",{}).setFontFamily('"Press Start 2P"').setOrigin(.5);
+     this._bossTexts.push(_sprite8text);
+
+     
+    //vicienzo
+    const _sprite9face:Phaser.GameObjects.Sprite=this.add.sprite(500,850,"faces").setFrame(16).setScale(2).setTintFill(0x000000);
+    this._bossFaces.push(_sprite9face);
+    const _sprite9cap:Phaser.GameObjects.Sprite=this.add.sprite(500+8,850-45,"cap-generic").setScale(.5).setFrame(0).setTintFill(0x000000);
+    this._bossCaps.push(_sprite9cap);
+    const _sprite9decoration:Phaser.GameObjects.Sprite=this.add.sprite(500+5,850-45,"food").setFrame(71).setScale(1).setTintFill(0x000000);
+    this._bossDecorations.push(_sprite9decoration);
+    const _sprite9text:Phaser.GameObjects.Text=this.add.text(420+80,850+50,"???",{}).setFontFamily('"Press Start 2P"').setOrigin(.5);
+    this._bossTexts.push(_sprite9text)
+    ;
+
+
+
+    const _names:Array<string>=["Zingarelli","Di Miao","Astrolina","Frignero","Bossanova","Renzie","Loschi","Giuseppi","Vicienzo"];
+    const _tints:Array<number>=[0xff0000,0x059cc7,0xff00ff,0x00ff00,0xffff00,0x664488,0xf68cf2,0xffffff,0x7a420b];
+
+    //let _bestLevel=this.registry.get("bestlevel");
+
+    for (let i=0; i<9; i++){
+
+      if(this._bestLevel>i+1){
+        this._bossContainer.add(this._bossFaces[i].clearTint());
+        this._bossContainer.add(this._bossCaps[i].clearTint().setTint(_tints[i]));
+        this._bossContainer.add(this._bossDecorations[i].clearTint());
+        this._bossContainer.add(this._bossTexts[i].setText(_names[i]));
+
+      }else{
+        this._bossContainer.add(this._bossFaces[i]);
+        this._bossContainer.add(this._bossCaps[i]);
+        this._bossContainer.add(this._bossDecorations[i]);
+        this._bossContainer.add(this._bossTexts[i]);
+      }
+     
+
+    }
+
+    
+
+
+
+
+
+
     this.startChange();
   }
 
@@ -332,17 +496,24 @@ export default class Intro extends Phaser.Scene {
     this.time.addEvent({
       delay: 5000,
       callback: () => {
-       
-        if (this._status == 2) this._status = 0;
+      
+        if (this._status == 3) this._status = 0;
         switch (this._status) {
           case 0:
+            
             this.introAnimOut();
             this._status += 1;
             break;
           case 1:
+            
             this.highscoresOut();
             this._status += 1;
             break;
+            case 2:
+             
+              this.bossOut();
+              this._status += 1;
+              break;
         }
       },
       callbackScope: this,
@@ -397,10 +568,32 @@ export default class Intro extends Phaser.Scene {
       alpha: 0,
 
       onComplete: () => {
+        this.bossIn();
+      },
+    });
+  }
+
+ bossIn(){ 
+    
+    this.tweens.add({
+    targets: this._bossContainer,
+    duration: 500,
+    alpha: 1
+  });}
+
+ bossOut() {
+    this.tweens.add({
+      targets: this._bossContainer,
+      duration: 500,
+      alpha: 0,
+
+      onComplete: () => {
         this.introAnimIn();
       },
     });
   }
+
+  
 
 
   introIn() {

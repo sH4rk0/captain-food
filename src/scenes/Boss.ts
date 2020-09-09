@@ -27,16 +27,16 @@ export default class Boss extends Phaser.GameObjects.Container {
   //private _heli: Phaser.Sound.BaseSound;
  
 
-  private _capDecoration:Array<{color:number,id:number,x:number,y:number,cap:{x:number,y:number},cy:number,mb:number}>=[
-    {color:0xff0000,id:61,x:10,y:-90,cap:{x:5,y:0},cy:10, mb:1},//zinga
-    {color:0x059cc7,id:3,x:5,y:-90,cap:{x:0,y:0},cy:10,mb:2},//dima
-    {color:0xff00ff,id:67,x:5,y:-90,cap:{x:0,y:0},cy:10,mb:2},//azzo
-    {color:0x00ff00,id:69,x:0,y:-90,cap:{x:-4,y:0},cy:-10,mb:3},//forn
-    {color:0xffff00,id:48,x:0,y:-90,cap:{x:0,y:0},cy:-10,mb:3},//bella
-    {color:0x664488,id:28,x:0,y:-90,cap:{x:0,y:0},cy:10,mb:3},//renzi
-    {color:0xf68cf2,id:23,x:0,y:-90,cap:{x:0,y:0},cy:-10,mb:4},//boschi
-    {color:0xffffff,id:72,x:0,y:-90,cap:{x:0,y:0},cy:0,mb:4},//giuseppi
-    {color:0x7a420b,id:71,x:0,y:-90,cap:{x:0,y:0},cy:0,mb:5}//o mast
+  private _capDecoration:Array<{color:number,id:number,x:number,y:number,cap:{x:number,y:number},cy:number,mb:number,d:number}>=[
+    {color:0xff0000,id:61,x:10,y:-90,cap:{x:5,y:0},cy:10, mb:1,d:1},//zinga
+    {color:0x059cc7,id:3,x:5,y:-90,cap:{x:0,y:0},cy:10,mb:2,d:2},//dima
+    {color:0xff00ff,id:67,x:5,y:-90,cap:{x:0,y:0},cy:10,mb:2,d:3},//azzo
+    {color:0x00ff00,id:69,x:0,y:-90,cap:{x:-4,y:0},cy:-10,mb:3,d:4},//forn
+    {color:0xffff00,id:48,x:0,y:-90,cap:{x:0,y:0},cy:-10,mb:3,d:5},//bella
+    {color:0x664488,id:28,x:0,y:-90,cap:{x:0,y:0},cy:10,mb:3,d:5},//renzi
+    {color:0xf68cf2,id:23,x:0,y:-90,cap:{x:0,y:0},cy:-10,mb:4,d:5},//boschi
+    {color:0xffffff,id:72,x:0,y:-90,cap:{x:0,y:0},cy:0,mb:4,d:6},//giuseppi
+    {color:0x7a420b,id:71,x:0,y:-90,cap:{x:0,y:0},cy:0,mb:5,d:8}//o mast
   ];
 
 
@@ -57,7 +57,7 @@ if(this._config.itemData.isMale!=undefined) this._isMale=this._config.itemData.i
 
 
 if(this._config.itemData.f!=undefined) this._type=this._config.itemData.f;
-this._maxHit=(this._type+1)+this._type;
+this._maxHit=this._maxBomb=this._capDecoration[this._type].d;
 this._maxBomb=this._capDecoration[this._type].mb;
 
 this._scene.events.off("gameover", this.gameOver, this);

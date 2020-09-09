@@ -26,7 +26,7 @@ export let GameData: any = {
       {d:2000,t:0},
       {d:2000,t:0},
       {d:2000,t:0},
-
+      {d:2000,t:0,s:true,f:70,w:true},
      {d:4000,t:4,text:{text:"In arrivo\nNicola\nZingarelli",size:30,color:"#ff0000",stroke:{color:"#ffffff",thick:10}}},
     
 
@@ -67,6 +67,7 @@ export let GameData: any = {
         {d:1500,t:0},
         {d:2000,t:0},
         {d:1500,t:0},
+        {d:2000,t:0,s:true,f:70,w:true},
         {d:4000,t:4,text:{text:"In arrivo\nLuigi\nDi Miao",size:30,color:"#ff0000",stroke:{color:"#ffffff",thick:10}}},
         {d:1500,t:3,f:1,isMale:true},
         
@@ -116,6 +117,7 @@ export let GameData: any = {
         {d:1500,t:0},
         {d:1500,t:0},
         {d:1000,t:0},
+        {d:2000,t:0,s:true,f:70,w:true},
         {d:4000,t:4,text:{text:"In arrivo\nLucia\nAstrolina",size:30,color:"#ff0000",stroke:{color:"#ffffff",thick:10}}},
         {d:1000,t:3,f:2,isMale:false},
       
@@ -169,9 +171,10 @@ export let GameData: any = {
         {d:1500,t:0},
         {d:1000,t:0},
         {d:1500,t:0},
+        {d:1000,t:0,s:true,f:47},
         {d:1000,t:0},
         {d:1500,t:0},
-
+        {d:2000,t:0,s:true,f:70,w:true},
         {d:4000,t:4,text:{text:"In arrivo\nElsa\nFrignero",size:30,color:"#ff0000",stroke:{color:"#ffffff",thick:10}}},
         {d:1000,t:3,f:3,isMale:false},
       
@@ -204,6 +207,7 @@ export let GameData: any = {
         {d:1500,t:0},
         {d:1000,t:0},
         {d:1500,t:0},
+        {d:1000,t:0,s:true,f:47},
         {d:1000,t:0},
         {d:1500,t:0},
         {d:2000,t:0,s:true,f:70,w:true},
@@ -225,8 +229,10 @@ export let GameData: any = {
         {d:1500,t:0},
         {d:1000,t:0},
         {d:1500,t:0},
+        {d:1000,t:0,s:true,f:47},
         {d:1000,t:0},
         {d:1500,t:0},
+        {d:2000,t:0,s:true,f:70,w:true},
         {d:4000,t:4,text:{text:"In arrivo\nTeresa\nBossanova",size:30,color:"#ff0000",stroke:{color:"#ffffff",thick:10}}},
         {d:1000,t:3,f:4,isMale:false},
       
@@ -275,12 +281,14 @@ export let GameData: any = {
         {d:1000,t:0},
         {d:1500,t:0},
         {d:1000,t:0},
+        {d:1000,t:0,s:true,f:47},
         {d:1500,t:0},
         {d:1000,t:0},
         {d:1500,t:0},
         {d:1000,t:0,s:true,f:47},
         {d:1000,t:0},
         {d:1500,t:0},
+        {d:2000,t:0,s:true,f:70,w:true},
         {d:4000,t:4,text:{text:"Matteo\nRenzie",size:30,color:"#ff0000",stroke:{color:"#ffffff",thick:10}}},
         {d:1000,t:3,f:5,isMale:true},
       
@@ -337,6 +345,7 @@ export let GameData: any = {
         {d:1000,t:0,s:true,f:47},
         {d:1000,t:0},
         {d:1500,t:0},
+        {d:2000,t:0,s:true,f:70,w:true},
         {d:4000,t:4,text:{text:"In arrivo\nMaria Elena\nLoschi",size:30,color:"#ff0000",stroke:{color:"#ffffff",thick:10}}},
         {d:1000,t:3,f:6,isMale:false},
       
@@ -366,6 +375,7 @@ export let GameData: any = {
         {d:1000,t:0},
         {d:1500,t:0},
         {d:1000,t:0},
+        {d:1000,t:0,s:true,f:47},
         {d:1500,t:0},
         {d:1000,t:0},
         {d:1500,t:0},
@@ -381,6 +391,7 @@ export let GameData: any = {
         {d:1000,t:0},
         {d:1000,t:0},
         {d:1000,t:0},
+        {d:1000,t:0,s:true,f:47},
         {d:1000,t:0},
         {d:1500,t:0},
         {d:1000,t:0},
@@ -391,6 +402,7 @@ export let GameData: any = {
         {d:2000,t:0,s:true,f:70,w:true},
         {d:1000,t:0},
         {d:1500,t:0},
+        {d:2000,t:0,s:true,f:70,w:true},
         {d:4000,t:4,text:{text:"In arrivo\nGiuseppi\nConte",size:30,color:"#ff0000",stroke:{color:"#ffffff",thick:10}}},
         {d:1000,t:3,f:7,isMale:true},
       
@@ -575,6 +587,19 @@ export let GameData: any = {
 
   images: [
     {
+      name: "fairlight-logo",
+      path: "assets/images/fairlight-logo.png"
+    },
+    
+    {
+      name: "fairlight-raster",
+      path: "assets/images/fairlight-raster.png"
+    },
+    {
+      name: "fairlight-raster2",
+      path: "assets/images/fairlight-raster2.png"
+    },
+    {
       name: "arrow",
       path: "assets/images/arrow.png",
     },
@@ -656,7 +681,7 @@ export let GameData: any = {
       name: "how-to",
       path: "assets/images/how-to.png",
     },
-
+    { name: "scrollFont", path: "assets/fonts/test.png" },
   
 
   ],
@@ -665,6 +690,13 @@ export let GameData: any = {
     {
       name: "intro",
       paths: ["assets/sounds/intro.ogg", "assets/sounds/intro.m4a"],
+      volume: 1,
+      loop: false,
+      frame: 1,
+    },
+    {
+      name: "fairlight",
+      paths: ["assets/sounds/fairlight.ogg", "assets/sounds/fairlight.m4a"],
       volume: 1,
       loop: false,
       frame: 1,
@@ -740,5 +772,11 @@ export let GameData: any = {
       imgpath: "assets/fonts/arcade.png",
       xmlpath: "assets/fonts/arcade.xml",
     },
+    {
+      name: "commodore",
+      imgpath: "assets/fonts/64_0.png",
+      xmlpath: "assets/fonts/64.xml",
+      jsonpath: ""
+    }
   ],
 };

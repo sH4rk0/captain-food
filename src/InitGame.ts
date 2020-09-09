@@ -5,6 +5,7 @@ import Intro from "./scenes/Intro";
 import Hud from "./scenes/Hud";
 import Joy from "./scenes/Joy";
 import GameOver from "./scenes/GameOver";
+import Crack from "./scenes/Crack";
 import GamePlaySlurp from "./scenes/GamePlaySlurp";
 import ScoreInput from "./scenes/ScoreInput";
 import Leaderboard from "./Leaderboard";
@@ -22,7 +23,7 @@ window.addEventListener("load", () => {
       height: 1024,
     },
 
-    scene: [Boot, Preloader, Intro, Hud, GamePlaySlurp, Joy, GameOver, ScoreInput],
+    scene: [Boot, Preloader,Crack, Intro, Hud, GamePlaySlurp, Joy, GameOver, ScoreInput],
     physics: {
       default: "arcade",
       arcade: {

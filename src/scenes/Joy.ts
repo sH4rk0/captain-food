@@ -13,8 +13,8 @@ export default class Joy extends Phaser.Scene {
   preload() {
     this.load.atlas(
       "arcade-joy",
-      "assets/skins/spritesheet.png",
-      "assets/skins/spritesheet.json"
+      "assets/skins/arcade-joystick.png",
+      "assets/skins/arcade-joystick.json"
     );
    /* this.load.atlas(
       "dpad",
@@ -47,31 +47,31 @@ this.left = this.pad.addButton(
   70,
   930,
   "arcade-joy",
-  "btn",
-  "btn-clicked"
+  "button1-up",
+  "button1-down",
 )
 
 
-this.add.sprite(70,930,"arrow").setFlipX(true)
+this.add.sprite(65,930,"arrow").setFlipX(true)
 
 //@ts-ignore
 this.right = this.pad.addButton(
-  180,
+  200,
   930,
   "arcade-joy",
-  "btn",
-  "btn-clicked"
+  "button1-up",
+  "button1-down",
 );
 
-this.add.sprite(180,930,"arrow")
+this.add.sprite(200,930,"arrow")
 
     //@ts-ignore
     this.slurp = this.pad.addButton(
       520,
       930,
       "arcade-joy",
-      "btn-2",
-      "btn-2-clicked"
+      "button3-up",
+  "button3-down",
     );
 
 
@@ -80,13 +80,13 @@ this.add.sprite(180,930,"arrow")
        //@ts-ignore
        this.fake = this.pad.addButton(
         520,
-        840,
+        800,
         "arcade-joy",
-        "btn-2",
-        "btn-2-clicked"
+        "button3-up",
+        "button3-down",
       );
 
-      this.add.sprite(520,840,"fake").setFrame(0).setScale(1)
+      this.add.sprite(520,800,"fake").setFrame(0).setScale(1)
 
     
   }

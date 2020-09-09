@@ -49,6 +49,9 @@ export default class Player extends Phaser.GameObjects.Container {
   }
 
   create() {
+
+    if(this._scene.registry.get("trainer")) this._trainer=true;
+
     this._scene.events.off("gameover", this.gameover, this);
     this._scene.events.on("gameover", this.gameover, this);
    

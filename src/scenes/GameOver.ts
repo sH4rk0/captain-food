@@ -21,6 +21,9 @@ export default class GameOver extends Phaser.Scene {
   private _score:number=0;
   private _finalscore:number=0;
   private _level:number=0;
+  private _trainer:boolean=false;
+  private _bestlevel:number=0;
+
   constructor() {
     super({
       key: "GameOver",
@@ -30,9 +33,31 @@ export default class GameOver extends Phaser.Scene {
   create() {
    // console.log("create gameover");
 
+   this.input.keyboard.on("keydown-O", (event: Event) => {
+    this.game.renderer.snapshot((image: any) => {
+      let mimeType = "image/png";
+      var imgURL = image.src;
+      var dlLink = document.createElement("a");
+      dlLink.download = "snapshot";
+      dlLink.href = imgURL;
+      dlLink.dataset.downloadurl = [
+        mimeType,
+        dlLink.download,
+        dlLink.href
+      ].join(":");
+      document.body.appendChild(dlLink);
+      dlLink.click();
+      document.body.removeChild(dlLink);
+    });
+  });
+
   this._score=this.registry.get("score");
   this._finalscore=this.registry.get("finalscore");
   this._level= this.registry.get("level");
+  this._trainer=this.registry.get("trainer");
+  this._bestlevel=this.registry.get("bestlevel");
+
+  if(this._level>this._bestlevel) this.registry.set("bestlevel",this._level);
 
     this._container2 = this.add.container(300, 330).setAlpha(0);
     this._container2.setSize(300, 302);
@@ -107,8 +132,12 @@ export default class GameOver extends Phaser.Scene {
       wordWrapWidth: 1000,
     };
 
+
+    let _question:string= "Ma posso continuare \n la partita? No?";
+    if(this._trainer){_question="Ma posso salvare \n lo score? No?"}
+
     this._text1 = this.add
-      .text(300, 270, "Ma posso continuare \n la partita? No?", _config)
+      .text(300, 270, _question, _config)
       .setStroke("#000000", 10)
       .setAlpha(0)
       .setOrigin(0)
@@ -131,6 +160,7 @@ export default class GameOver extends Phaser.Scene {
     let _win:Boolean=this.registry.get("win");
     this.registry.set("win",false);
     if(_win){_text="Se ha finito\nil gioco no!"}else{_text="Se ha finito\nle vite no!"}
+    if(this._trainer){_text="Se ha usato\nil trainer no!"}
     this._text2 = this.add
       .text(150, 250, _text, _config)
       .setStroke("#000000", 10)
@@ -201,6 +231,7 @@ export default class GameOver extends Phaser.Scene {
     //console.log("submitName", name);
     this.scene.stop("ScoreInput");
 
+    if(!this._trainer)
     leaderboard.insertScore({
       score: this._finalscore,
       name: name,
