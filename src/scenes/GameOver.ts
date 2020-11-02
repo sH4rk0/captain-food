@@ -1,4 +1,5 @@
 import { leaderboard } from "../InitGame";
+import { NormalModuleReplacementPlugin } from "webpack";
 
 export default class GameOver extends Phaser.Scene {
   _playerText: Phaser.GameObjects.BitmapText;
@@ -228,6 +229,8 @@ export default class GameOver extends Phaser.Scene {
     this._playerText.setText(name);
   }
   submitName(name: string) {
+
+ 
     //console.log("submitName", name);
     this.scene.stop("ScoreInput");
 

@@ -78,14 +78,21 @@ export default class Preloader extends Phaser.Scene {
     this.progress.clear();
 
     this.input.once("pointerdown", () => {
-      this.scene.start("Intro");
+
+      
+     
+
+      const urlParams = new URLSearchParams(window.location.search);
+
+      if(urlParams.get('crack')==="fairlight"){
+        this.scene.start("Crack");
+      }else{
+        this.scene.start("Intro");
+      }
+
       this.registry.set("bestlevel",0);
-/*
-      this.scene.start("GameOver");
-      this.scene.start("ScoreInput");
-      this.scene.bringToTop("GameOver");
-      this.scene.bringToTop("ScoreInput");
-  */    
+    
+    
     });
   }
 

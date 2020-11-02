@@ -1,7 +1,8 @@
 import * as firebase from "firebase";
 
 export default class Leaderboard {
-  private firebaseConfig = {
+ 
+private firebaseConfig = {
     apiKey: "AIzaSyCl5ydtUBpqN4Zvf-XAd014xQmKlIvpwnE",
     authDomain: "captain-food.firebaseapp.com",
     databaseURL: "https://captain-food.firebaseio.com",
@@ -11,6 +12,11 @@ export default class Leaderboard {
     appId: "1:692843702258:web:27a2f956d18c6be063ad6b",
     measurementId: "G-S0K0VJ5XMX"
   };
+  
+
+
+
+
   private fireBaseApp: firebase.app.App;
   private fireBaseDb: firebase.database.Database;
   private scores: firebase.database.Reference;
@@ -24,6 +30,8 @@ export default class Leaderboard {
     this.highscores = [];
     this.allscores = [];
     this.getData();
+
+    firebase.auth().signInAnonymously().catch((error) =>{ console.log(error) });
   }
 
   insertScore(score: ScoreConfig) {

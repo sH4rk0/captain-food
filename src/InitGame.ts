@@ -23,7 +23,17 @@ window.addEventListener("load", () => {
       height: 1024,
     },
 
-    scene: [Boot, Preloader,Crack, Intro, Hud, GamePlaySlurp, Joy, GameOver, ScoreInput],
+    scene: [
+      Boot,
+      Preloader,
+      Crack,
+      Intro,
+      Hud,
+      GamePlaySlurp,
+      Joy,
+      GameOver,
+      ScoreInput,
+    ],
     physics: {
       default: "arcade",
       arcade: {
@@ -42,7 +52,6 @@ window.addEventListener("load", () => {
 
   const game = new Phaser.Game(config);
 
-  
   /*
   if ("serviceWorker" in navigator) {
     navigator.serviceWorker
@@ -59,6 +68,4 @@ window.addEventListener("load", () => {
       );
   }
   */
-  
-  
 });

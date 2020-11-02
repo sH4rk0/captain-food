@@ -35,7 +35,7 @@ export default class ScoreInput extends Phaser.Scene {
     this._text.setInteractive();
 
     this.add.image(this._text.x + 430, this._text.y + 148, "rub");
-    this.add.image(this._text.x + 482, this._text.y + 148, "end");
+    this.add.image(this._text.x + 482, this._text.y + 148, "end").setTint(0xff0000);
 
     this._block = this.add
       .image(this._text.x - 10, this._text.y - 2, "block")
